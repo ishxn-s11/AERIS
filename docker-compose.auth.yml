@@ -1,0 +1,19 @@
+# Overlay that turns on MQTT authentication.
+#
+#   # 1. Generate the broker files from the database (registers credentials too)
+#   python backend/scripts/sync_mqtt_credentials.py --keep-existing
+#   # 2. Start the stack with auth enabled
+#   docker compose -f docker-compose.yml -f docker-compose.auth.yml up -d
+#   # 3. Point the backend at its broker credential (.env)
+#   MQTT_USERNAME=aeris-backend  MQTT_PASSWORD=<from .env>
+#   # 4. Run the simulator with per-device credentials
+#   python iot/simulator/simulator.py --credentials-file mqtt/credentials.csv
+#
+# Requires mqtt/passwd and mqtt/acl to exist (both are gitignored — they contain
+# secrets), so this overlay is NOT part of the default `docker compose up` path.
+services:
+  mosquitto:
+    volumes:
+      - ./mqtt/mosquitto.auth.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./mqtt/passwd:/mosquitto/config/passwd:ro
+      - ./mqtt/acl:/mosquitto/config/acl:ro

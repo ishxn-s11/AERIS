@@ -1,0 +1,27 @@
+{
+  "ridge": {
+    "mae": 6.508,
+    "rmse": 9.501,
+    "r2": 0.922,
+    "mae_random_split": 6.07,
+    "r2_random_split": 0.9207
+  },
+  "random_forest": {
+    "mae": 0.234,
+    "rmse": 0.898,
+    "r2": 0.9993,
+    "mae_random_split": 0.195,
+    "r2_random_split": 0.9992
+  },
+  "gradient_boosting": {
+    "mae": 0.357,
+    "rmse": 1.162,
+    "r2": 0.9988,
+    "mae_random_split": 0.39,
+    "r2_random_split": 0.9982
+  },
+  "baselines": {
+    "no_change_mae": 7.569,
+    "mean_mae": 30.151
+  }
+}

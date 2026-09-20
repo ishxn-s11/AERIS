@@ -1,0 +1,12 @@
+{
+  "individual": {
+    "xgboost": 0.980640873151638,
+    "random_forest": 0.9972674107393047,
+    "gradient_boosting": 0.9975841516021962,
+    "isolation_forest": 0.7265743212492202,
+    "lstm": 0.9834929207407054
+  },
+  "ensemble_f1": 0.9975322218982694,
+  "training_rows": 63300,
+  "training_seconds": 121.0
+}
