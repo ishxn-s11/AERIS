@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   AERIS design system
+   Editorial-industrial: near-black canvas, hairline rules, weight-contrast
+   display type, mono micro-labels, one volt accent. Deliberately NOT the
+   stock Tailwind palette.
+   ========================================================================== */
+@theme {
+  /* canvas */
+  --color-ink: #08090a;
+  --color-ink-2: #0c0e10;
+  --color-ink-3: #121517;
+  --color-line: rgba(233, 231, 226, 0.14);
+  --color-line-soft: rgba(233, 231, 226, 0.07);
+
+  /* type */
+  --color-paper: #e9e7e2;
+  --color-muted: #8a8c87;
+  --color-faint: #5a5d59;
+
+  /* signature + data accents */
+  --color-volt: #d8f14e;
+  --color-iris: #a99bff;
+  --color-aqua: #5cc9c0;
+
+  /* risk semantics (custom tones, not stock green/amber/orange/red) */
+  --color-jade: #8fe3b0;
+  --color-brass: #e4c15b;
+  --color-ember: #f0763c;
+  --color-scarlet: #e5484d;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-volt);
+    color: var(--color-ink);
+  }
+  /* hairline scrollbars, same language as the rules */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #24272a;
+    border: 2px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3e42;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilities shared across the app
+   -------------------------------------------------------------------------- */
+
+/* mono micro-label — the "LOCAL TIME" treatment from the reference */
+.micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* display headline: uppercase, tight, weight contrast supplied inline */
+.display {
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+/* engineering blueprint grid over the page canvas */
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, var(--color-line-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line-soft) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* corner registration ticks for framed panels */
+.corner-ticks {
+  position: relative;
+}
+.corner-ticks::before,
+.corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-color: var(--color-line);
+  border-style: solid;
+  pointer-events: none;
+}
+.corner-ticks::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.corner-ticks::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* live ticker marquee */
+@keyframes aeris-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: aeris-marquee 46s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* blinking live marker */
+@keyframes aeris-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.blink {
+  animation: aeris-blink 1.4s ease-in-out infinite;
+}
+
+/* editorial underline-on-hover for nav */
+.link-rule {
+  position: relative;
+}
+.link-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: var(--color-volt);
+  transition: width 180ms ease;
+}
+.link-rule:hover::after {
+  width: 100%;
+}
