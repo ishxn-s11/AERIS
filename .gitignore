@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.db-journal
+*.sqlite3
+
+# Build output
+.next/
+dist/
+build/
+
+# Logs
+*.log
+*.err.log
+.uvicorn.log
+
+# ML models (large, train from scripts)
+ml/models/*.joblib
+ml/datasets/*.csv
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Freebuff
+.freebuff/
+
+# MQTT generated files
+mqtt/*.pw
+mqtt/*.acl
